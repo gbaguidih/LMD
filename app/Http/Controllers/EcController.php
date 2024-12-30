@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ec;
 use App\Models\Ue;
 use Illuminate\Http\Request;
 
-class UeController extends Controller
+class EcController extends Controller
 {
     public function index(Request $request)
     {   
         $ues = Ue::all();
-        return view('ue.index', compact('ues'));
+        $ecs = Ec::all();
+        return view('ec.index', compact('ecs'));
     }
 
     /**
@@ -18,7 +20,8 @@ class UeController extends Controller
      */
     public function create()
     {   
-        return view('ue.create');
+        $ues = Ue::all();
+        return view('ec.create', compact('ues'));
     }
 
     /**
@@ -29,11 +32,11 @@ class UeController extends Controller
         $request->validate([
             'code' => 'required|string|max:20',
             'nom' => 'required|string|max:50',
-            'credits_ects' => 'required|integer',
-            'semestre' => 'required|string',
+            'coefficient' => 'required|numeric',
+            'ue_id' => 'required|exists:ues,id',
         ]);
-        Ue::create($request->all());
-        return redirect()->route('ue.index')->with('success');
+        Ec::create($request->all());
+        return redirect()->route('ec.index')->with('success');
     }
 
     /**
@@ -41,8 +44,10 @@ class UeController extends Controller
      */
     public function edit($id)
     {
-        $ue = Ue ::find($id) ;
-        return view('ue.edit',compact('ue'));
+        $ues = Ue::all();
+
+        $ec = Ec ::find($id) ;
+        return view('ec.edit',compact('ues','ec'));
     }
 
     /**
@@ -50,16 +55,17 @@ class UeController extends Controller
      */
     public function update(Request $request,  $id) 
     { 
-        $request->validate([
+        $validatedData =$request->validate([
             'code' => 'required|string|max:20',
             'nom' => 'required|string|max:50',
-            'credits_ects' => 'required|integer',
-            'semestre' => 'required|string',
+            'coefficient' => 'required|integer',
+            'ue_id' => 'required|integer|exists:ues,id',
         ]);
-        $ue = Ue::find($id);
-        $ue->update($request->all());
-        return redirect()->route('ue.index')
-            ->with('success', 'UE mise à jour avec succès !');
+        
+        $ec = Ec::find($id);
+        $ec->update($validatedData);
+        return redirect()->route('ec.index')
+            ->with('success', 'EC mise à jour avec succès !');
         
             
     }
@@ -69,11 +75,11 @@ class UeController extends Controller
      */
     public function destroy($id)
     {
-        $ue = Ue::find($id);
-        $ue->delete();
-        return redirect()->route('ue.index')
-      ->with('success', 'UE supprimer avec succès !');
+        $ecs = Ec::find($id);
+        $ecs->delete();
+        
+        return redirect()->route('ec.index')
+      ->with('success', 'EC supprimer avec succès !');
         
     }
-
 }
