@@ -40,6 +40,34 @@ class UeTest extends TestCase
        }
     }
 
+    public function test_association_des_ecs_a_une_ue(): void{
+        $ue = Ue::factory()->create([
+            'code' => 'UE3',
+            'nom' => 'Programmation Web',
+            'credits_ects' => 6,
+            'semestre' => 1
+        ]);
+        $this->assertDatabaseHas('ues', [
+            'code' => 'UE3',
+            'nom' => 'Programmation Web',
+            'credits_ects' => 6,
+            'semestre' => 1
+        ]);
+        $ec = EC::factory()->create([
+            'code' => 'EC01',
+            'nom' => 'Frontend Development',
+            'coefficient' => 2,
+            'ue_id' => $ue->id,  
+        ]);
+        $this->assertDatabaseHas('ecs', [
+            'code' => 'EC01',
+            'nom' => 'Frontend Development',
+            'coefficient' => 2,
+            'ue_id' => $ue->id,  
+        ]);
+
+        $this->assertTrue($ue->ec->contains($ec));  
     
+    }
 
 }
