@@ -15,14 +15,14 @@ class UeTest extends TestCase
     public function test_creation_ue(): void{
         $ue = Ue::factory()->create([
             'code' => 'UE1',
-            'nom' => 'Programmation Web',
-            'credits_ects' => 6,
+            'nom' => 'Structure de données, BDD distribuées et sécurité',
+            'credits_ects' => 9,
             'semestre' => 'S1'
         ]);
         $this->assertDatabaseHas('ues', [
             'code' => 'UE1',
-            'nom' => 'Programmation Web',
-            'credits_ects' => 6,
+            'nom' => 'Structure de données, BDD distribuées et sécurité',
+            'credits_ects' => 9,
             'semestre' => 'S1'
         ]);
     }
@@ -31,9 +31,9 @@ class UeTest extends TestCase
        for($credits = 1 ; $credits <= 30 ; $credits++){
         $response = $this->post('/ue',[
             'code' => 'UE2' . $credits,
-            'nom' => 'Programmation Web' . $credits ,
+            'nom' => 'Développement Mobile Natif et Hybride' . $credits ,
             'credits_ects' => $credits,
-            'semestre' => 'S1'  
+            'semestre' => 'S5'  
         ]);
 
         $response -> assertStatus(302);
@@ -43,25 +43,25 @@ class UeTest extends TestCase
     public function test_association_des_ecs_a_une_ue(): void{
         $ue = Ue::factory()->create([
             'code' => 'UE3',
-            'nom' => 'Programmation Web',
+            'nom' => 'Modélisation de données et POO',
             'credits_ects' => 6,
-            'semestre' => 1
+            'semestre' => 'S5'
         ]);
         $this->assertDatabaseHas('ues', [
             'code' => 'UE3',
-            'nom' => 'Programmation Web',
+            'nom' => 'Modélisation de données et POO',
             'credits_ects' => 6,
-            'semestre' => 1
+            'semestre' => 'S5'
         ]);
         $ec = EC::factory()->create([
-            'code' => 'EC01',
-            'nom' => 'Frontend Development',
+            'code' => 'EC1',
+            'nom' => 'XML',
             'coefficient' => 2,
             'ue_id' => $ue->id,  
         ]);
         $this->assertDatabaseHas('ecs', [
-            'code' => 'EC01',
-            'nom' => 'Frontend Development',
+            'code' => 'EC1',
+            'nom' => 'XML',
             'coefficient' => 2,
             'ue_id' => $ue->id,  
         ]);
@@ -75,15 +75,15 @@ class UeTest extends TestCase
         foreach ($valid_codes as $code) {
             $response = $this->post(route('ue.store'), [
                 'code' => $code,
-                'nom' => 'Programmation Web',
-                'credits_ects' => 6,
+                'nom' => 'Linux et langage de script',
+                'credits_ects' => 4,
                 'semestre' => 'S5',
             ]);
             $response->assertStatus(302);
             $this->assertDatabaseHas('ues', [
                 'code' => $code,
-                'nom' => 'Programmation Web',
-                'credits_ects' => 6,
+                'nom' => 'Linux et langage de script',
+                'credits_ects' => 4,
                 'semestre' => 'S5',
             ]);
         }
@@ -93,17 +93,17 @@ class UeTest extends TestCase
         for($semestre = 1 ; $semestre <= 6 ; $semestre++){
             $response = $this->post('/ue',[
                 'code' => 'UE5' . $semestre,
-                'nom' => 'Programmation Web' ,
-                'credits_ects' => 6,
-                'semestre' =>'s' . $semestre  
+                'nom' => 'Analyse numérique et Réseau' ,
+                'credits_ects' => 8,
+                'semestre' =>'S' . $semestre  
             ]);
    
             $response -> assertStatus(302);
             $this->assertDatabaseHas('ues', [
                 'code' => 'UE5' . $semestre,
-                'nom' => 'Programmation Web',
-                'credits_ects' => 6,
-                'semestre' => 's' .$semestre,
+                'nom' => 'Analyse numérique et Réseau',
+                'credits_ects' => 8,
+                'semestre' => 'S' .$semestre,
             ]);
         }
     }
