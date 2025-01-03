@@ -89,5 +89,23 @@ class UeTest extends TestCase
         }
 
     }
+    public function test_verification_du_semestre(): void{
+        for($semestre = 1 ; $semestre <= 6 ; $semestre++){
+            $response = $this->post('/ue',[
+                'code' => 'UE5' . $semestre,
+                'nom' => 'Programmation Web' ,
+                'credits_ects' => 6,
+                'semestre' =>'s' . $semestre  
+            ]);
+   
+            $response -> assertStatus(302);
+            $this->assertDatabaseHas('ues', [
+                'code' => 'UE5' . $semestre,
+                'nom' => 'Programmation Web',
+                'credits_ects' => 6,
+                'semestre' => 's' .$semestre,
+            ]);
+        }
+    }
 
 }
