@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EcController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UeController;
 use Illuminate\Support\Facades\Route;
@@ -43,5 +44,13 @@ Route::post('etudiant', [EtudiantController::class, 'store'])->name('etudiant.st
 Route::get('etudiant/{id}/edit', [EtudiantController::class, 'edit'])->name('etudiant.edit');
 Route::put('etudiant/{id}', [EtudiantController::class, 'update'])->name('etudiant.update');
 Route::delete('etudiant/{id}', [EtudiantController::class, 'destroy'])->name('etudiant.destroy');
+
+//route pour Note
+Route::get('note', [NoteController::class, 'index'])->name('note.index');
+Route::get('note/create', [NoteController::class, 'create'])->name('note.create');
+Route::post('note', [NoteController::class, 'store'])->name('note.store');
+Route::get('note/{id}/edit', [NoteController::class, 'edit'])->name('note.edit');
+Route::put('note/{id}', [NoteController::class, 'update'])->name('note.update');
+Route::delete('note/{id}', [NoteController::class, 'destroy'])->name('note.destroy');
 
 require __DIR__.'/auth.php';

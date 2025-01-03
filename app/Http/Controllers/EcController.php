@@ -45,7 +45,6 @@ class EcController extends Controller
     public function edit($id)
     {
         $ues = Ue::all();
-
         $ec = Ec ::find($id) ;
         return view('ec.edit',compact('ues','ec'));
     }
