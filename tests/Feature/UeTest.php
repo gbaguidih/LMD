@@ -69,5 +69,25 @@ class UeTest extends TestCase
         $this->assertTrue($ue->ec->contains($ec));  
     
     }
+    public function  test_validation_du_code_ue_format_UExx() :void{
+        $valid_codes = ['UE04'];
+
+        foreach ($valid_codes as $code) {
+            $response = $this->post(route('ue.store'), [
+                'code' => $code,
+                'nom' => 'Programmation Web',
+                'credits_ects' => 6,
+                'semestre' => 'S5',
+            ]);
+            $response->assertStatus(302);
+            $this->assertDatabaseHas('ues', [
+                'code' => $code,
+                'nom' => 'Programmation Web',
+                'credits_ects' => 6,
+                'semestre' => 'S5',
+            ]);
+        }
+
+    }
 
 }
