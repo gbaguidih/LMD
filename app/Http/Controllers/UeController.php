@@ -27,7 +27,7 @@ class UeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|string|max:20',
+            'code' => ['required', 'string', 'regex:/^UE\d{2}$/'],
             'nom' => 'required|string|max:50',
             'credits_ects' => 'required|integer',
             'semestre' => 'required|string',
