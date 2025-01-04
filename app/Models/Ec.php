@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Ec extends Model
 {
     protected $fillable = [
-        'code','nom','coefficient','ue_id'
+        'code',
+        'nom',
+        'coefficient',
+        'ue_id'
     ];
 
     public function ue(): BelongsTo {
