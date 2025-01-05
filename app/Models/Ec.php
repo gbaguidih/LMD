@@ -12,7 +12,10 @@ class Ec extends Model
     use HasFactory;
 
     protected $fillable = [
-        'code','nom','coefficient','ue_id'
+        'code',
+        'nom',
+        'coefficient',
+        'ue_id'
     ];
 
     public function ue(): BelongsTo {

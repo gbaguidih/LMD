@@ -17,7 +17,6 @@
             </style>
         @endif
     </head>
-    <body>
         <nav class="navbar fixed w-full z-20 top-0 left-0 bg-transparent">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="{{route('welcome')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -33,37 +32,55 @@
                     </button>
                 </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-                    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
-                        <li>
-                            <a href="{{route('etudiant.index')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Etudiant</a>
-                        </li>
-                        <li>
-                            <a href="{{route('ue.index')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">UEs</a>
-                        </li>
-                        <li>
-                            <a href="{{route('ec.index')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">ECs</a>
-                        </li>
-                        <li>
-                            @if (Route::has('login'))
+                    <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0"> 
+                        @if (Route::has('login'))
                             <nav class="-mx-3 flex flex-1 justify-end">
                                 @auth
-                                    <a
-                                        href="{{ url('/dashboard') }}"
-                                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                    >
-                                        Dashboard
-                                    </a>
-                                @else
-                            </li>
-                            <li>
-                                <a
-                                    href="{{ route('login') }}"
-                                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                >
-                                    Log in  
-                                </a>
-                            </li>
-                            <li>
+                                <nav class="navbar fixed w-full z-20 top-0 left-0 bg-transparent">
+                                    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                                        <a href="{{route('welcome')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                                            <img id="logo" src="https://flowbite.com/docs/images/logo.svg" class="h-8 transition-all" alt="Flowbite Logo">
+                                            <span id="navbar-title" class="self-center text-2xl font-semibold whitespace-nowrap text-white">LMD-9</span>
+                                        </a>
+                                        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                                            <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                                                <span class="sr-only">Open main menu</span>
+                                                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                                            <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium rounded-lg bg-transparent md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
+                                                <li>
+                                                    <a href="{{route('etudiant.index')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Etudiant</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('ue.index')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">UEs</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{route('ec.index')}}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">ECs</a>
+                                                </li> 
+                                                <li>
+                                                    <a
+                                                        href="{{ url('/dashboard') }}"
+                                                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                                        >
+                                                            Dashboard
+                                                    </a>
+                                                </li>   
+                                            </ul>     
+                                        </div>           
+                                    </div>           
+                                </nav>   
+                            </nav>    
+                        @else
+                            <a
+                                href="{{ route('login') }}"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                            >
+                                Log in             
+                            </a>
                                 @if (Route::has('register'))
                                     <a
                                         href="{{ route('register') }}"
@@ -71,32 +88,29 @@
                                     >
                                         Register
                                     </a>
-                            <li>
                                 @endif
                             @endauth
-                        </nav>
-                    @endif
+                        @endif
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="relative w-full  h-[50vh]"> <!-- Ajuste mt-[80px] selon la hauteur de ta navbar -->
-            <!-- Image de fond -->
-            <img class="w-full h-full object-cover" src="{{ asset('storage/images/systeme-lmd-maroc.png') }}" alt="image description">
-            <!-- Couche colorée -->
-            <div class="absolute inset-0 bg-blue-900 bg-opacity-50"></div>
-            <!-- Texte centré sur l'image -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-            <h1 class="mb-4 text-3xl font-extrabold md:text-5xl lg:text-6xl">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Licence Mast</span>er Doctorat.
-            </h1>
-            <p class="text-lg font-normal lg:text-xl">
-                Le système LMD (Licence-Master-Doctorat) est un modèle d'enseignement supérieur structuré en trois cycles : Licence (3 ans), Master (2 ans) et Doctorat (3 ans). Basé sur les crédits ECTS, il harmonise les diplômes à l'international, favorisant mobilité, flexibilité et professionnalisation.
-            </p>
-            </div>
-        </div>
-        </div>
-    </body>
+<div class="relative w-full  h-[50vh]"> <!-- Ajuste mt-[80px] selon la hauteur de ta navbar -->
+    <!-- Image de fond -->
+    <img class="w-full h-full object-cover" src="{{ asset('storage/images/systeme-lmd-maroc.png') }}" alt="image description">
+    <!-- Couche colorée -->
+    <div class="absolute inset-0 bg-blue-900 bg-opacity-50"></div>
+    <!-- Texte centré sur l'image -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+      <h1 class="mb-4 text-3xl font-extrabold md:text-5xl lg:text-6xl">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">Licence Mast</span>er Doctorat.
+      </h1>
+      <p class="text-lg font-normal lg:text-xl">
+        Le système LMD (Licence-Master-Doctorat) est un modèle d'enseignement supérieur structuré en trois cycles : Licence (3 ans), Master (2 ans) et Doctorat (3 ans). Basé sur les crédits ECTS, il harmonise les diplômes à l'international, favorisant mobilité, flexibilité et professionnalisation.
+      </p>
+    </div>
+  </div>
+</div>
 <script>
   // Lorsque la page est chargée
   document.addEventListener("DOMContentLoaded", function () {
@@ -125,20 +139,10 @@
   .navbar {
     transition: background-color 0.3s ease;
   }
+
   /* Navbar après défilement (fond blanc) */
   .navbar.scrolled {
     background-color: white !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 </style>
-<x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("You're logged in!") }}
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout>

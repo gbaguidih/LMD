@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+    
+})->name('welcome');
+
+Route::view('/etudiant', 'etudiant')->name('etudiant');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
