@@ -13,6 +13,15 @@
             <h1 class="text-3xl font-bold text-gray-900">Formulaire d'ajout d'une Unité d'Enseignement (UE)</h1>
         </div>
     </header>
+    @if ($errors->any())
+    <div class="bg-red-500 text-white p-4 rounded">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <form action="{{ route('ue.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-md w-full">

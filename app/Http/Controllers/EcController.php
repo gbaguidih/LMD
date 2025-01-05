@@ -30,8 +30,8 @@ class EcController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|string|max:20',
-            'nom' => 'required|string|max:50',
+            'code' => ['required', 'string', 'regex:/^EC\d{2}$/'],
+            'nom' => 'required|string',
             'coefficient' => 'required|numeric',
             'ue_id' => 'required|exists:ues,id',
         ]);
@@ -55,8 +55,8 @@ class EcController extends Controller
     public function update(Request $request,  $id) 
     { 
         $validatedData =$request->validate([
-            'code' => 'required|string|max:20',
-            'nom' => 'required|string|max:50',
+            'code' =>  ['required', 'string', 'regex:/^EC\d{2}$/'],
+            'nom' => 'required|string',
             'coefficient' => 'required|integer',
             'ue_id' => 'required|integer|exists:ues,id',
         ]);

@@ -28,7 +28,7 @@ class UeController extends Controller
     {
         $request->validate([
             'code' => ['required', 'string', 'regex:/^UE\d{2}$/'],
-            'nom' => 'required|string|max:50',
+            'nom' => 'required|string',
             'credits_ects' => 'required|integer',
             'semestre' => 'required|string',
         ]);
@@ -51,8 +51,8 @@ class UeController extends Controller
     public function update(Request $request,  $id) 
     { 
         $request->validate([
-            'code' => 'required|string|max:20',
-            'nom' => 'required|string|max:50',
+            'code' =>  ['required', 'string', 'regex:/^UE\d{2}$/'],
+            'nom' => 'required|string',
             'credits_ects' => 'required|integer',
             'semestre' => 'required|string',
         ]);
