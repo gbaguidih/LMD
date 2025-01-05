@@ -64,7 +64,15 @@
                             @method('DELETE')
                             <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
                         </form>
+                        <div style="padding-top:-200px; padding-left:9px; margin-left:150px;">
+                            <a href="{{ route('note.index') }}" class="text-white bg-blue-400 dark:bg-blue-500 font-medium rounded-lg text-sm px-2 py-2.5 text-center hover:bg-blue-600">
+                                Voir
+                            </a>      
+                        </div>
                     </td>
+                    
+                        
+                    
                 </tr>
                 @endforeach
             </tbody>
