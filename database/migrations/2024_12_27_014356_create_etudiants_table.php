@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('numero_etudiant')->unique(); 
             $table->string('nom'); 
             $table->string('prenom'); 
-            $table->enum('niveau', ['L1', 'L2', 'L3']);     
+            $table->enum('niveau', ['l1', 'l2', 'l3']);     
             $table->timestamps();
         });
     }

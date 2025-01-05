@@ -8,10 +8,10 @@
 </head>
 <body>
     @include('navbar')
-    <h1 class="text-5xl font-extrabold dark:text-white" style="padding-top:30px; padding-bottom:15px; margin-left:300px;">Liste des Éléments Constitutifs (EC)</h1>
+    <h1 class="text-5xl font-extrabold dark:text-white" style="padding-top:30px; padding-bottom:15px; margin-left:500px;">Liste des Etudiants</h1>
     <div style="padding-top:30px; padding-left:90px; ">
-        <a href="{{ route('ec.create') }}" class="text-white bg-blue-400 dark:bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">
-            Ajouter un Nouvel EC
+        <a href="{{ route('etudiant.create') }}" class="text-white bg-blue-400 dark:bg-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:bg-blue-600">
+            Ajouter un Etudiant
         </a>      
     </div>
     <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
@@ -26,16 +26,16 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Code EC
+                        Num Etudiant
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Nom
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Coefficient
+                        Prénom
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        UE
+                        Niveau
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Actions
@@ -43,23 +43,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($ecs as $ec)
+                @foreach($etudiants as $etudiant)
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $ec->code }}
+                        {{ $etudiant->numero_etudiant }}
                     </th>
                     <td class="px-6 py-4">
-                        {{ $ec->nom }}
+                        {{ $etudiant->nom }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $ec->coefficient }}
+                        {{ $etudiant->prenom }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $ec->ue->nom }}
+                        {{ $etudiant->niveau }}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="{{ route('ec.edit', $ec->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
-                        <form action="{{ route('ec.destroy', $ec->id) }}" method="POST" class="inline">
+                        <a href="{{ route('etudiant.edit', $etudiant->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                        <form action="{{ route('etudiant.destroy', $etudiant->id) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
